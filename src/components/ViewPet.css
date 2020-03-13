@@ -1,0 +1,37 @@
+.breed-age-sex-list {
+  display: flex;
+}
+
+.breed-age-sex-list li {
+  padding-right: 20px;
+}
+
+.pet-name {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+img {
+  width: 300px;
+}
+
+.info {
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.info p {
+  margin: 10px 0;
+}
+
+.info button {
+  margin-top: 40px;
+  height: auto;
+}
+
+.pet {
+  display: flex;
+  width: 600px;
+  margin: 30px;
+}

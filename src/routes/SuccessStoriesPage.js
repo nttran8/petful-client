@@ -5,7 +5,7 @@ import RecentAdoption from "../components/RecentAdoption";
 
 export default function SuccessStoriesPage() {
 
-  let recentAdoptions = () =>{ //<RecentAdoptions />
+  let recentAdoptions = () =>{ //<RecentAdoption />
     return <p>Adopt don't shop</p>
   }
   return (
