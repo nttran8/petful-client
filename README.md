@@ -23,4 +23,7 @@ https://petful-taylorp-nghit.now.sh/
 https://github.com/thinkful-ei-jaguar/petful-server-NghiTaylorP
 https://petful-server-nhgi-taylorp.herokuapp.com/api
 
-<img src="screen.png">
+### Screens
+
+<img src="/screen/homepage.png">
+<img src="/screen/adopt.png">
