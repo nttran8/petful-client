@@ -25,11 +25,9 @@ img {
   margin: 10px 0;
 }
 
-.info button {
+.tabContent button {
   margin-top: 40px;
-  height: auto;
 }
-
 .pet {
   display: flex;
   width: 600px;

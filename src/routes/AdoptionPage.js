@@ -8,7 +8,8 @@ export default class AdoptionPage extends Component {
   state = {
     cat:null,
     dog:null,
-    loaded: false
+    loaded: false,
+    adopted: null
   }
 
   openTab(e) {
@@ -40,6 +41,18 @@ export default class AdoptionPage extends Component {
     })
   }
 
+  handleOnClickCat = () => {
+    this.setState({ adopted: this.state.cat})
+    ApiService.deletePets('cat')
+    this.value.history.push('/successstories')
+  }
+
+  handleOnClickDog = () => {
+    this.setState({ adopted: this.state.dog})
+    ApiService.deletePets('dog')
+    this.props.history.push('/successstories')
+  }
+
 render() {
   let loaded = this.state.loaded
   return (
@@ -52,9 +65,11 @@ render() {
         </div>
         <div id="Cat" className="tabContent">
           {loaded && <ViewPet pet={this.state.cat}/>} {/**need to insert props from state */}
+          <button type='button' onClick={this.handleOnClickCat}>Adopt Me!</button>
         </div>
         <div id="Dog" className="tabContent">
           {loaded && <ViewPet pet={this.state.dog}/>} {/**need to insert props from state */}
+          <button type='button' onClick={this.handleOnClickDog}>Adopt Me!</button>
         </div>
       </section>
     </>

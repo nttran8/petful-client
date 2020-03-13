@@ -18,7 +18,6 @@ export default class ViewsPet extends Component {
           </ul>
         </div>
         <p>{pet.description}</p>
-        <button type='button'>Adopt Me!</button>
         </div>
       </div>
     );
