@@ -11,7 +11,13 @@ function Root() {
   return (
     <main className="Root">
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route
+          exact
+          path="/"
+          render={({ history }) => (
+            <HomePage addToQueue={() => history.push("/queue")} />
+          )}
+        />
         <Route path="/adoption" component={AdoptionPage} />
         <Route path="/queue" component={QueuePage} />
         <Route path="/successstories" component={SuccessStoriesPage} />

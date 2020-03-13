@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Header from "../components/Header";
-import "./HomePage.css";
 import ViewPet from "../components/ViewPet";
 import ApiService from '../api-service'
 

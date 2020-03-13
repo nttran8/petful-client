@@ -3,7 +3,9 @@ import config from "./config";
 const ApiService = {
   // Get users
   getUsers() {
-    return fetch(`${config.API_ENDPOINT}/people`).then(res => res.json());
+    return fetch(`${config.API_ENDPOINT}/people`).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+    );
   },
   // Add users to queue - user object should only contain "name" property
   postUsers(user) {
@@ -13,9 +15,7 @@ const ApiService = {
         "content-type": "application/json"
       },
       body: JSON.stringify(user)
-    }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
+    });
   },
   // Get pets
   getPets() {
