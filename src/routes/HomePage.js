@@ -1,11 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import welcomeCat from "../img/welcome.jpg";
 import "./HomePage.css";
 
 export default function HomePage() {
-  function DirectToQueue() {
-    console.log("hi");
-  }
   return (
     <section className="HomePage">
       <h1>Petful:</h1>
@@ -17,8 +15,8 @@ export default function HomePage() {
         entered in our waiting queue to adopt!
       </p>
       <img src={welcomeCat} alt="welcome cat" />
-      <button type="button" onClick={DirectToQueue}>
-        Adopt now
+      <button type="button">
+        <Link to="/queue">Adopt now</Link>
       </button>
     </section>
   );
