@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "name": "petful-client-template",
-  "alias": "Petful_NghiT_TaylorP",
+  "name": "Petful-TaylorP-NghiT",
+  "alias": "Petful-TaylorP-NghiT",
   "routes": [
     {
       "src": "^/static/(.*)",

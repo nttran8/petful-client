@@ -9,7 +9,7 @@ export default function HomePage(props) {
     if (name) {
       ApiService.postUsers({ name });
     }
-    props.addToQueue();
+    setTimeout(() => props.addToQueue(), 3000);
   }
 
   return (
