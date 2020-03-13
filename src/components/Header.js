@@ -24,7 +24,7 @@ export default function Header() {
         </li>
 
         <li>
-          <Link className="nav" to="/sucessstories">
+          <Link className="nav" to="/successstories">
             Success Stories
           </Link>
         </li>
