@@ -1,11 +1,11 @@
 import React, { Component } from "react";
+import ApiService from "../api-service";
 import Header from "../components/Header";
 import Queue from "../components/Queue";
-import "./HomePage.css";
 
 export default class QueuePage extends Component {
   state = {
-    message: "You're almost next in line to adopt!"
+    message: "Adopting Queue"
   };
 
   render() {
@@ -14,9 +14,7 @@ export default class QueuePage extends Component {
         <Header />
         <section className="QueuePage">
           <h2>{this.state.message}</h2>
-          <ul>
-            <Queue />
-          </ul>
+          <Queue />
         </section>
       </>
     );
