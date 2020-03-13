@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import ApiService from "../services/api-service";
+import ApiService from "../api-service";
 
 export default class Queue extends Component {
   state = {};
 
   componentDidMount() {
-    ApiService.getUsers(users => console.log(users));
+    ApiService.getUsers()
+      .then(users => console.log(users))
+      .catch(error => console.log(error));
   }
   render() {
     return <li></li>;

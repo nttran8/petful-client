@@ -1,11 +1,9 @@
-import config from "../config";
+import config from "./config";
 
 const ApiService = {
   // Get users
   getUsers() {
-    return fetch(`${config.API_ENDPOINT}/people`).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
+    return fetch(`${config.API_ENDPOINT}/people`).then(res => res.json());
   },
   // Add users to queue - user object should only contain "name" property
   postUsers(user) {
