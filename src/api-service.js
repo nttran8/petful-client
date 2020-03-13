@@ -24,7 +24,7 @@ const ApiService = {
     );
   },
   // Adopt pets - animal object should only contain type property of cat or dog
-  deletePets(animal) {
+  deletePets(type) {
     return fetch(`${config.REACT_APP_API_BASE}/pets`, {
       method: "DELETE",
       headers: {
