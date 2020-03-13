@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <header className="Header">
-      <ol>
+    <div className="Header">
+      <header>
+        <p>Petful</p>
+      </header>
+      <ol className="navbar">
         <li>
           <Link className="nav" to="/">
             Home
@@ -29,6 +32,6 @@ export default function Header() {
           </Link>
         </li>
       </ol>
-    </header>
+    </div>
   );
 }
