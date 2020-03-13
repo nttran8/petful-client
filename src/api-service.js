@@ -1,4 +1,4 @@
-import config from "../../confirm";
+import config from "../config";
 
 const ApiService = {
   // Get users
