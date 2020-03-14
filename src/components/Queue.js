@@ -4,18 +4,11 @@ import UserContext from "../context";
 
 export default class Queue extends Component {
   static contextType = UserContext;
-  state = { users: [] };
 
   componentDidMount() {
     ApiService.getUsers()
       .then(users => {
-        if (this.context.currentUser.length > 0 && users.length > 0) {
-          this.setState({ users: [...users, this.context.currentUser] });
-        } else if (this.context.currentUser.length > 0) {
-          this.setState({ user: [this.context.currentUser] });
-        } else {
-          this.setState({ users });
-        }
+        this.context.updateUsers(users);
       })
       .catch(error => console.log(error));
   }
@@ -23,7 +16,7 @@ export default class Queue extends Component {
   render() {
     return (
       <ul>
-        {this.state.users.map((user, i) => (
+        {this.context.users.map((user, i) => (
           <li key={i + user}>{user}</li>
         ))}
       </ul>

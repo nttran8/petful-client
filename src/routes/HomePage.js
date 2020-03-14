@@ -11,15 +11,14 @@ export default class HomePage extends Component {
 
   static contextType = UserContext;
 
-  addUser() {
+  addUser = () => {
     let name = prompt("What is your name?");
     if (name) {
-      ApiService.postUsers({ name });
       this.context.updateUser(name);
+      ApiService.postUsers({ name });
     }
-    console.log(this.props);
-    // this.props.addToQueue();
-  }
+    this.props.addToQueue();
+  };
 
   render() {
     return (
