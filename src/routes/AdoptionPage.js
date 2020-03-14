@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Header from "../components/Header";
 import ViewPet from "../components/ViewPet";
 import ApiService from '../api-service'
+import './AdoptionPage.css'
 
 export default class AdoptionPage extends Component {
 
@@ -66,6 +67,12 @@ render() {
         <div id="Cat" className="tabContent">
           {loaded && <ViewPet pet={this.state.cat}/>} {/**need to insert props from state */}
           <button type='button' onClick={this.handleOnClickCat}>Adopt Me!</button>
+          <div className='modal'>
+            <div className='modal-content'>
+              <span className='close-button'>&times;</span>
+              <p>pop-up window</p>
+            </div>
+          </div>
         </div>
         <div id="Dog" className="tabContent">
           {loaded && <ViewPet pet={this.state.dog}/>} {/**need to insert props from state */}

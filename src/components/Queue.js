@@ -7,7 +7,8 @@ export default class Queue extends Component {
   componentDidMount() {
     ApiService.getUsers()
       .then(users => {
-        this.setState({ users });
+        console.log(users)
+        this.setState({ users: users.people });
       })
       .catch(error => console.log(error));
   }
