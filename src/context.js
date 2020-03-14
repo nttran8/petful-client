@@ -4,7 +4,7 @@ const UserContext = React.createContext({
   currentUser: ""
 });
 
-export default context;
+export default UserContext;
 
 export class UserProvider extends Component {
   state = {

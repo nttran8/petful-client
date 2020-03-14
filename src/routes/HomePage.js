@@ -1,33 +1,42 @@
-import React from "react";
+import React, { Component } from "react";
 import welcomeCat from "../img/welcome.jpg";
 import ApiService from "../api-service";
 import UserContext from "../context";
 import "./index.css";
 
-export default function HomePage(props) {
-  function addUser() {
+export default class HomePage extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  static contextType = UserContext;
+
+  addUser() {
     let name = prompt("What is your name?");
     if (name) {
       ApiService.postUsers({ name });
-      UserContext.updateUser(name);
+      this.context.updateUser(name);
     }
-    props.addToQueue();
+    console.log(this.props);
+    // this.props.addToQueue();
   }
 
-  return (
-    <section className="HomePage">
-      <h1>Petful:</h1>
-      <p>
-        A place to find your next doggo and catto besfriends! Each adoptor can
-        bring one doggo, one catto, or one of each home. To help our doggo and
-        catto quickly find a home, we made it a rule for the adoptor to only
-        claim the next available doggo and catto. Click "Adopt Now" to be
-        entered in our waiting queue!
-      </p>
-      <img src={welcomeCat} alt="welcome cat" />
-      <button type="button" onClick={addUser}>
-        Adopt now
-      </button>
-    </section>
-  );
+  render() {
+    return (
+      <section className="HomePage">
+        <h1>Petful:</h1>
+        <p>
+          A place to find your next doggo and catto besfriends! Each adoptor can
+          bring one doggo, one catto, or one of each home. To help our doggo and
+          catto quickly find a home, we made it a rule for the adoptor to only
+          claim the next available doggo and catto. Click "Adopt Now" to be
+          entered in our waiting queue!
+        </p>
+        <img src={welcomeCat} alt="welcome cat" />
+        <button type="button" onClick={this.addUser}>
+          Adopt now
+        </button>
+      </section>
+    );
+  }
 }

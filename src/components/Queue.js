@@ -9,10 +9,10 @@ export default class Queue extends Component {
   componentDidMount() {
     ApiService.getUsers()
       .then(users => {
-        if (this.context.user.length > 0 && users.length > 0) {
-          this.setState({ users: [...users, this.context.user] });
-        } else if (this.context.user.length > 0) {
-          this.setState({ user: [this.context.user] });
+        if (this.context.currentUser.length > 0 && users.length > 0) {
+          this.setState({ users: [...users, this.context.currentUser] });
+        } else if (this.context.currentUser.length > 0) {
+          this.setState({ user: [this.context.currentUser] });
         } else {
           this.setState({ users });
         }
