@@ -1,6 +1,7 @@
 import React from "react";
 import welcomeCat from "../img/welcome.jpg";
 import ApiService from "../api-service";
+import UserContext from "../context";
 import "./index.css";
 
 export default function HomePage(props) {
@@ -8,8 +9,9 @@ export default function HomePage(props) {
     let name = prompt("What is your name?");
     if (name) {
       ApiService.postUsers({ name });
+      UserContext.updateUser(name);
     }
-    setTimeout(() => props.addToQueue(), 3000);
+    props.addToQueue();
   }
 
   return (
