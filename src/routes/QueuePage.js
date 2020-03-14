@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ApiService from "../api-service";
 import Header from "../components/Header";
 import Queue from "../components/Queue";
 
