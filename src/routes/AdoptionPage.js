@@ -8,8 +8,8 @@ import "./AdoptionPage.css";
 export default class AdoptionPage extends Component {
   static contextType = UserContext;
   state = {
-    cat: null,
-    dog: null,
+    cats: null,
+    dogs: null,
     loaded: false,
     adopted: null
   };
@@ -39,21 +39,31 @@ export default class AdoptionPage extends Component {
       //   this.setState({ cat: res.})
       // })
       .then(res => {
-        this.setState({ cat: res.cat[0], dog: res.dog[0], loaded: true });
+        this.setState({ cats: res.cat, dogs: res.dog, loaded: true });
       });
   }
 
   handleOnClickCat = () => {
-    this.setState({ adopted: this.state.cat });
+    this.setState({ adopted: this.state.cat[0]});
     ApiService.deletePets("cat");
     this.value.history.push("/successstories");
   };
 
   handleOnClickDog = () => {
-    this.setState({ adopted: this.state.dog });
+    this.setState({ adopted: this.state.dog[0]});
     ApiService.deletePets("dog");
     this.props.history.push("/successstories");
   };
+
+  renderUpNextCatsList = () => {
+    const {cats =[]} = this.state
+    return cats.map(cat => <li>{cat.name}</li>)
+  }
+
+  renderUpNextDogsList = () => {
+    const {dogs=[]} = this.state
+    return dogs.map(dog => <li>{dog.name}</li>)
+  }
 
   render() {
     let loaded = this.state.loaded;
@@ -61,6 +71,21 @@ export default class AdoptionPage extends Component {
       <>
         <Header />
         <section className="AdoptionPage">
+        <section className='up-next'>
+          <div className='cats-next'>
+            <h2>Cats:</h2>
+            <ol className='upNext-list'>
+              {loaded && this.renderUpNextCatsList()}
+            </ol >
+          </div>
+          <div className='dogs-next'>
+            <h2>Dogs:</h2>
+            <ol className='upNext-list'>
+              {loaded && this.renderUpNextDogsList()}
+            </ol>
+          </div>
+        </section>
+        <section className='available-pet'>
           <div className="tab">
             <button
               className="tabLinks"
@@ -75,7 +100,7 @@ export default class AdoptionPage extends Component {
             </button>
           </div>
           <div id="Cat" className="tabContent">
-            {loaded && <ViewPet pet={this.state.cat} />}{" "}
+            {loaded && <ViewPet pet={this.state.cats[0]} />}{" "}
             {/**need to insert props from state */}
             {/* if user is next, then button is shown */}
             {this.context.canAdopt && (
@@ -83,15 +108,9 @@ export default class AdoptionPage extends Component {
                 Adopt Me!
               </button>
             )}
-            <div className="modal">
-              <div className="modal-content">
-                <span className="close-button">&times;</span>
-                <p>pop-up window</p>
-              </div>
-            </div>
           </div>
           <div id="Dog" className="tabContent">
-            {loaded && <ViewPet pet={this.state.dog} />}{" "}
+            {loaded && <ViewPet pet={this.state.dogs[0]} />}{" "}
             {/**need to insert props from state */}
             {/* if user is next, then button is shown */}
             {this.context.canAdopt && (
@@ -100,6 +119,7 @@ export default class AdoptionPage extends Component {
               </button>
             )}
           </div>
+          </section>
         </section>
       </>
     );

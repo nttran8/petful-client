@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./ViewPet.css"
 
-export default class ViewsPet extends Component {
+export default class ViewPet extends Component {
 
   render() {
     let { pet } = this.props
