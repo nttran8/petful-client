@@ -1,21 +1,23 @@
 import ApiService from "./api-service";
 import UserContext from "./context";
-let _45_SEC = 45000;
+let _30_SEC = 3000;
 let _timeoutId = null;
 
 const DequeueTimer = {
-  setIdleCallback(idleCallback) {
-    // Call when user goes idle
-    _idleCallback = idleCallback;
+  // Stop timer
+  stopTimer() {
+    console.log("clearing");
+    clearTimeout(_timeoutId);
   },
-  // Reset timer when user has been dequeued
-  resetTimer(ev) {
-    // Remove any timer
-    clearTimer(_timeoutId);
-    // Set timer to 45 sec
+  // Set timer
+  setTimer(ev) {
+    console.log("setting");
+    // Set timer to 30 sec
     _timeoutId = setTimeout(() => {
       // Remove user
-
+      ApiService.deleteUsers(UserContext.users[0]).then(res =>
+        UserContext.removeUser()
+      );
       // Randomly remove an animal
       const animal = ["cat", "dog"];
       const type = animal[Math.floor(Math.random() * animal.length)];
@@ -23,6 +25,8 @@ const DequeueTimer = {
       ApiService.deletePets(type).then(pet =>
         UserContext.updateSuccessStories(pet)
       );
-    }, _45_SEC);
+    }, _30_SEC);
   }
 };
+
+export default DequeueTimer;
