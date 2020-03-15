@@ -4,6 +4,7 @@ const UserContext = React.createContext({
   users: [],
   user: "",
   canAdopt: false,
+  successStories: [],
   updateUser: () => {},
   updateUsers: () => {}
 });
@@ -14,6 +15,7 @@ export class UserProvider extends Component {
   state = {
     users: [],
     user: "",
+    successStories: [],
     canAdopt: false
   };
 
@@ -30,6 +32,10 @@ export class UserProvider extends Component {
     }
   };
 
+  updateSuccessStories = animal => {
+    this.setState({ successStories: [...this.state.successStories, animal] });
+  };
+
   toggleAdoptionStatus = () => {
     this.setState({ canAdopt: !this.state.canAdopt });
   };
@@ -41,6 +47,8 @@ export class UserProvider extends Component {
       canAdopt: this.state.canAdopt,
       updateUser: this.updateUser,
       updateUsers: this.updateUsers,
+      successStories: this.state.successStories,
+      updateSuccessStories: this.updateSuccessStories,
       toggleAdoptionStatus: this.toggleAdoptionStatus
     };
 
