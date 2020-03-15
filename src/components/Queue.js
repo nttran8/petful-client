@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import ApiService from "../api-service";
 import UserContext from "../context";
+<<<<<<< HEAD
 let _10_SEC = 10000;
 let _timeoutId = null;
+=======
+import DequeueTimer from "../dequeueTimer";
+import "./Queue.css"
+>>>>>>> bf0dd38b8ecbb8b1ad3efd286e3335aeceebcf51
 
 export default class Queue extends Component {
   state = {
@@ -67,7 +72,7 @@ export default class Queue extends Component {
     return (
       <>
         <h2>{this.state.message}</h2>
-        <ul>
+        <ul className='queue-list'>
           {this.context.users.map((user, i) => (
             <li key={i + user}>{user}</li>
           ))}
