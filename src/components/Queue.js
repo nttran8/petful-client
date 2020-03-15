@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ApiService from "../api-service";
 import UserContext from "../context";
+import './Queue.css'
 
 export default class Queue extends Component {
   state = {
@@ -29,7 +30,7 @@ export default class Queue extends Component {
     return (
       <>
         <h2>{this.state.message}</h2>
-        <ul>
+        <ul className='queue-list'>
           {this.context.users.map((user, i) => (
             <li key={i + user}>{user}</li>
           ))}
