@@ -6,7 +6,9 @@ const UserContext = React.createContext({
   canAdopt: false,
   successStories: [],
   updateUser: () => {},
-  updateUsers: () => {}
+  removeUser: () => {},
+  updateUsers: () => {},
+  toggleAdoptionStatus: () => {}
 });
 
 export default UserContext;
@@ -23,8 +25,12 @@ export class UserProvider extends Component {
     this.setState({ user });
   };
 
+  removeUser = () => {
+    const newUsers = this.state.users.slice(1);
+    this.setState({ users: newUsers });
+  };
+
   updateUsers = users => {
-    console.log(!users.includes(this.state.user));
     if (!users.includes(this.state.user)) {
       this.setState({ users: [...users, this.state.user] });
     } else {
@@ -46,6 +52,7 @@ export class UserProvider extends Component {
       user: this.state.user,
       canAdopt: this.state.canAdopt,
       updateUser: this.updateUser,
+      removeUser: this.removeUser,
       updateUsers: this.updateUsers,
       successStories: this.state.successStories,
       updateSuccessStories: this.updateSuccessStories,

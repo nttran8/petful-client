@@ -10,11 +10,13 @@ export default class Queue extends Component {
   static contextType = UserContext;
 
   componentDidMount() {
-    ApiService.getUsers()
-      .then(users => {
-        this.context.updateUsers(users);
-      })
-      .catch(error => console.log(error));
+    if (this.context.users.length === 0) {
+      ApiService.getUsers()
+        .then(users => {
+          this.context.updateUsers(users);
+        })
+        .catch(error => console.log(error));
+    }
 
     if (this.context.user === this.context.users[0] && !this.context.canAdopt) {
       this.context.toggleAdoptionStatus();

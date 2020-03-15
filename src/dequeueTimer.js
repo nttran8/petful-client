@@ -15,7 +15,9 @@ const DequeueTimer = {
     // Set timer to 45 sec
     _timeoutId = setTimeout(() => {
       // Remove user
-
+      ApiService.deleteUsers(UserContext.users[0]).then(res =>
+        UserContext.removeUser()
+      );
       // Randomly remove an animal
       const animal = ["cat", "dog"];
       const type = animal[Math.floor(Math.random() * animal.length)];
