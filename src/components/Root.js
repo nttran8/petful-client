@@ -6,7 +6,6 @@ import HomePage from "../routes/HomePage";
 import QueuePage from "../routes/QueuePage";
 import SuccessStoriesPage from "../routes/SuccessStoriesPage";
 import NotFoundPage from "../routes/NotFoundPage";
-import UserProvider from "../context";
 
 function Root() {
   return (

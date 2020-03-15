@@ -5,10 +5,6 @@ import UserContext from "../context";
 import "./index.css";
 
 export default class HomePage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   static contextType = UserContext;
 
   addUser = () => {

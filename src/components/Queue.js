@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import ApiService from "../api-service";
 import UserContext from "../context";
-import DequeueTimer from "../dequeueTimer";
+let _10_SEC = 10000;
+let _timeoutId = null;
 
 export default class Queue extends Component {
   state = {
@@ -9,6 +10,33 @@ export default class Queue extends Component {
   };
 
   static contextType = UserContext;
+
+  stopTimer = () => {
+    clearTimeout(_timeoutId);
+  };
+
+  setTimer = ev => {
+    // Set timer to 10 sec
+    _timeoutId = setTimeout(this.dequeue, _10_SEC);
+  };
+
+  dequeue = () => {
+    // Remove user
+    ApiService.deleteUsers(this.context.users[0]).then(res =>
+      this.context.removeUser()
+    );
+    // Randomly remove an animal
+    const animal = ["cat", "dog"];
+    const type = animal[Math.floor(Math.random() * animal.length)];
+    // Remove pet
+    ApiService.deletePets(type).then(pet =>
+      this.context.updateSuccessStories(pet)
+    );
+    // Dequeue user every X Sec
+    if (this.context.users.length > 1) {
+      _timeoutId = setTimeout(this.dequeue, _10_SEC);
+    }
+  };
 
   componentDidMount() {
     // Fetch users if there are no users in the list
@@ -19,7 +47,7 @@ export default class Queue extends Component {
         })
         .catch(error => console.log(error));
     } else {
-      DequeueTimer.setTimer();
+      this.setTimer();
     }
 
     // If user is next in line, update adoption status and message
@@ -32,7 +60,7 @@ export default class Queue extends Component {
   }
 
   componentWillUnmount() {
-    DequeueTimer.stopTimer();
+    this.stopTimer();
   }
 
   render() {
