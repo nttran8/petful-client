@@ -38,6 +38,7 @@ export class UserProvider extends Component {
     const value = {
       users: this.state.users,
       user: this.state.user,
+      canAdopt: this.state.canAdopt,
       updateUser: this.updateUser,
       updateUsers: this.updateUsers,
       toggleAdoptionStatus: this.toggleAdoptionStatus
