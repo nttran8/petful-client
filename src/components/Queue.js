@@ -93,7 +93,7 @@ export default class Queue extends Component {
     this.setState({
       message: `Congratulations! Please navigate to the 'Adopt' page to start the adoption process!`
     });
-    window.localStorage.setItem("canAdopt", true);
+    window.localStorage.setItem("canAdopt", "true");
     console.log(this.state);
   };
 
@@ -104,10 +104,10 @@ export default class Queue extends Component {
         this.setState({ users });
       })
       .then(() => {
-        if (window.localStorage.getItem("canAdopt") === true) {
+        if (window.localStorage.getItem("canAdopt") === "true") {
           this.updateAdoptionStatus();
         } else {
-          window.localStorage.setItem("canAdopt", false);
+          window.localStorage.setItem("canAdopt", "false");
           this.setState({ message: `You're almost next to adopt!` });
         }
         // Automatically dequeue and enqueue users and pets
