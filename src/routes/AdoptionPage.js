@@ -71,7 +71,7 @@ export default class AdoptionPage extends Component {
       <>
         <Header />
         <section className="AdoptionPage">
-        <section className='up-next'>
+        <div className='up-next'>
           <div className='cats-next'>
             <h2>Cats:</h2>
             <ol className='upNext-list'>
@@ -84,7 +84,7 @@ export default class AdoptionPage extends Component {
               {loaded && this.renderUpNextDogsList()}
             </ol>
           </div>
-        </section>
+        </div>
         <section className='available-pet'>
           <div className="tab">
             <button

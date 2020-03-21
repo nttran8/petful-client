@@ -51,6 +51,18 @@
 
 .tabContent {
   max-width: 500px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tabContent button {
+  background-color: black;
+  color: white;
+  width: 100px;
+}
+
+.tabContent button:hover {
+  background-color: pink;
 }
 
 .upNext-list{

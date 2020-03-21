@@ -3,7 +3,7 @@ import config from "./config";
 const ApiService = {
   // Get users
   getUsers() {
-    console.log(config.REACT_APP_API_BASE);
+    //console.log(config.REACT_APP_API_BASE);
     return fetch(`${config.REACT_APP_API_BASE}/people`).then(res =>
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
     );
