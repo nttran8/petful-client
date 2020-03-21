@@ -75,7 +75,7 @@ export default class AdoptionPage extends Component {
   };
 
   renderAdoptCatButton = () => {
-    if (this.context.canAdopt && !this.state.adoptedCat) {
+    if (window.localStorage.getItem('canAdopt')==='true' && !this.state.adoptedCat) {
       return (
         <button type="button" onClick={this.handleOnClickCat}>
           Adopt Me!
@@ -85,7 +85,7 @@ export default class AdoptionPage extends Component {
   };
 
   renderAdoptDogButton = () => {
-    if (this.context.canAdopt && !this.state.adoptedDog) {
+    if (window.localStorage.getItem('canAdopt')==='true' && !this.state.adoptedDog) {
       return (
         <button type="button" onClick={this.handleOnClickDog}>
           Adopt Me!
@@ -132,26 +132,22 @@ export default class AdoptionPage extends Component {
             {loaded && <ViewPet pet={this.state.cats[0]} />}{" "}
             {/**need to insert props from state */}
             {/* if user is next, then button is shown */}
-            {this.context.canAdopt && (
+            {window.localStorage.getItem('canAdopt')==='true' && (
               <button type="button" onClick={this.handleOnClickCat}>
                 Adopt Me!
               </button>
-              <button className="tabLinks" value="Dog" onClick={this.openTab}>
-                Dog
+            )}
+          </div>
+          <div id="Dog" className="tabContent">
+            {loaded && <ViewPet pet={this.state.dogs[0]} />}{" "}
+            {/**need to insert props from state */}
+            {/* if user is next, then button is shown */}
+            {window.localStorage.getItem('canAdopt')==='true' && (
+              <button type="button" onClick={this.handleOnClickDog}>
+                Adopt Me!
               </button>
-            </div>
-            <div id="Cat" className="tabContent">
-              {loaded && <ViewPet pet={this.state.cats[0]} />}{" "}
-              {/**need to insert props from state */}
-              {/* if user is next, then button is shown */}
-              {this.renderAdoptCatButton()}
-            </div>
-            <div id="Dog" className="tabContent">
-              {loaded && <ViewPet pet={this.state.dogs[0]} />}{" "}
-              {/**need to insert props from state */}
-              {/* if user is next, then button is shown */}
-              {this.renderAdoptDogButton()}
-            </div>
+            )}
+          </div>
           </section>
         </section>
       </>
