@@ -14,6 +14,7 @@ export default class HomePage extends Component {
     }
     if (name) {
       this.context.updateUser(name);
+      console.log(this.context.user);
       ApiService.postUsers({ name }).then(() => this.props.addToQueue());
     }
   };

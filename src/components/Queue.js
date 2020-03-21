@@ -10,8 +10,7 @@ export default class Queue extends Component {
 
   state = {
     message: "Adopting Queue:",
-    users: null,
-    canAdopt: false
+    users: null
   };
 
   setTimer = ev => {
@@ -61,11 +60,10 @@ export default class Queue extends Component {
       lastNames[Math.floor(Math.random() * lastNames.length)];
 
     // Dequeue and enqueue user
-    ApiService.deleteUsers(this.context.users[0]).then(res => {
+    ApiService.deleteUsers(this.state.users[0]).then(res => {
       this.setState({ users: [...this.state.users.slice(1), name] });
-      this.checkAdoptionStatus();
     });
-    ApiService.postUsers(name);
+    ApiService.postUsers({ name });
 
     // Dequeue pet
     ApiService.deletePets(type)
@@ -74,13 +72,18 @@ export default class Queue extends Component {
       })
       .then(() => {
         // Dequeue and enqueue sample user every 5 sec
+        this.checkAdoptionStatus();
         _timeoutId = setTimeout(this.dequeueEnqueue, _5_SEC);
       });
   };
 
   checkAdoptionStatus = () => {
-    if (!window.localStorage.getItem("canAdopt") && this.context.user) {
-      if (!this.users.includes(this.context.user)) {
+    if (
+      window.localStorage.getItem("canAdopt") === "false" &&
+      this.context.user !== null
+    ) {
+      console.log("can adopt is false");
+      if (!this.state.users.includes(this.context.user)) {
         this.updateAdoptionStatus();
       }
     }
@@ -88,9 +91,10 @@ export default class Queue extends Component {
 
   updateAdoptionStatus = () => {
     this.setState({
-      canAdopt: true,
       message: `Congratulations! Please navigate to the 'Adopt' page to start the adoption process!`
     });
+    window.localStorage.setItem("canAdopt", true);
+    console.log(this.state);
   };
 
   componentDidMount() {
