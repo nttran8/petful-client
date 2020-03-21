@@ -10,7 +10,6 @@ export default class Queue extends Component {
 
   state = {
     message: "Adopting Queue:",
-    user: null,
     users: null,
     canAdopt: false
   };
@@ -80,8 +79,8 @@ export default class Queue extends Component {
   };
 
   checkAdoptionStatus = () => {
-    if (!window.localStorage.getItem("canAdopt") && this.state.user) {
-      if (!this.users.includes(this.state.user)) {
+    if (!window.localStorage.getItem("canAdopt") && this.context.user) {
+      if (!this.users.includes(this.context.user)) {
         this.updateAdoptionStatus();
       }
     }

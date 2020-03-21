@@ -8,7 +8,10 @@ export default class HomePage extends Component {
   static contextType = UserContext;
 
   addUser = () => {
-    let name = prompt("What is your name?");
+    let name;
+    if (window.localStorage.getItem("canAdopt") === null) {
+      name = prompt("What is your name?");
+    }
     if (name) {
       this.context.updateUser(name);
       ApiService.postUsers({ name }).then(() => this.props.addToQueue());

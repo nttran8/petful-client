@@ -100,45 +100,52 @@ export default class AdoptionPage extends Component {
       <>
         <Header />
         <section className="AdoptionPage">
-        <div className='up-next'>
-          <div className='cats-next'>
-            <h2>Cats:</h2>
-            <ol className='upNext-list'>
-              {loaded && this.renderUpNextCatsList()}
-            </ol >
+          <div className="up-next">
+            <div className="cats-next">
+              <h2>Cats:</h2>
+              <ol className="upNext-list">
+                {loaded && this.renderUpNextCatsList()}
+              </ol>
+            </div>
+            <div className="dogs-next">
+              <h2>Dogs:</h2>
+              <ol className="upNext-list">
+                {loaded && this.renderUpNextDogsList()}
+              </ol>
+            </div>
           </div>
-          <div className='dogs-next'>
-            <h2>Dogs:</h2>
-            <ol className='upNext-list'>
-              {loaded && this.renderUpNextDogsList()}
-            </ol>
-          </div>
-        </div>
-        <section className='available-pet'>
-          <div className="tab">
-            <button
-              className="tabLinks"
-              id="defaultOpen"
-              value="Cat"
-              onClick={this.openTab}
-            >
-              Cat
-            </button>
-            <button className="tabLinks" value="Dog" onClick={this.openTab}>
-              Dog
-            </button>
-          </div>
-          <div id="Cat" className="tabContent">
-            {loaded && <ViewPet pet={this.state.cats[0]} />}{" "}
-            {/**need to insert props from state */}
-            {/* if user is next, then button is shown */}
-            {this.context.canAdopt && (
-              <button type="button" onClick={this.handleOnClickCat}>
-                Adopt Me!
+          <section className="available-pet">
+            <div className="tab">
+              <button
+                className="tabLinks"
+                id="defaultOpen"
+                value="Cat"
+                onClick={this.openTab}
+              >
+                Cat
               </button>
               <button className="tabLinks" value="Dog" onClick={this.openTab}>
                 Dog
               </button>
+            </div>
+            <div id="Cat" className="tabContent">
+              {loaded && <ViewPet pet={this.state.cats[0]} />}{" "}
+              {/**need to insert props from state */}
+              {/* if user is next, then button is shown */}
+              {this.context.canAdopt && (
+                <>
+                  <button type="button" onClick={this.handleOnClickCat}>
+                    Adopt Me!
+                  </button>
+                  <button
+                    className="tabLinks"
+                    value="Dog"
+                    onClick={this.openTab}
+                  >
+                    Dog
+                  </button>
+                </>
+              )}
             </div>
             <div id="Cat" className="tabContent">
               {loaded && <ViewPet pet={this.state.cats[0]} />}{" "}

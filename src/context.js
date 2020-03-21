@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 
 const UserContext = React.createContext({
-  canAdopt: false,
+  user: null,
   successStories: [],
   updateSuccessStories: () => {},
-  toggleAdoptionStatus: () => {}
+  updateUser: () => {}
 });
 
 export default UserContext;
 
 export class UserProvider extends Component {
   state = {
-    canAdopt: false,
+    user: null,
     successStories: [
       {
         imageURL:
@@ -31,6 +31,10 @@ export class UserProvider extends Component {
     ]
   };
 
+  updateUser = user => {
+    this.setState({ user });
+  };
+
   updateSuccessStories = animal => {
     const pet = {
       imageURL: animal.imageURL,
@@ -39,16 +43,12 @@ export class UserProvider extends Component {
     this.setState({ successStories: [pet, ...this.state.successStories] });
   };
 
-  toggleAdoptionStatus = () => {
-    this.setState({ canAdopt: !this.state.canAdopt });
-  };
-
   render() {
     const value = {
-      canAdopt: this.state.canAdopt,
+      user: this.state.user,
       successStories: this.state.successStories,
       updateSuccessStories: this.updateSuccessStories,
-      toggleAdoptionStatus: this.toggleAdoptionStatus
+      updateUser: this.updateUser
     };
 
     return (
