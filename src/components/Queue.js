@@ -82,7 +82,6 @@ export default class Queue extends Component {
       window.localStorage.getItem("canAdopt") === "false" &&
       this.context.user !== null
     ) {
-      console.log("can adopt is false");
       if (!this.state.users.includes(this.context.user)) {
         this.updateAdoptionStatus();
       }
@@ -94,7 +93,6 @@ export default class Queue extends Component {
       message: `Congratulations! Please navigate to the 'Adopt' page to start the adoption process!`
     });
     window.localStorage.setItem("canAdopt", "true");
-    console.log(this.state);
   };
 
   componentDidMount() {
