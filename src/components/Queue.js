@@ -106,7 +106,7 @@ export default class Queue extends Component {
           this.updateAdoptionStatus();
         } else {
           window.localStorage.setItem("canAdopt", "false");
-          this.setState({ message: `You're almost next to adopt!` });
+          this.setState({ message: `Adoption queue:` });
         }
         // Automatically dequeue and enqueue users and pets
         this.setTimer();

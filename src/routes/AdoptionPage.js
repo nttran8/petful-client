@@ -52,6 +52,9 @@ export default class AdoptionPage extends Component {
     ApiService.deletePets("cat").then(cat => {
       this.context.updateSuccessStories(cat);
     });
+    if (this.state.adoptedDog === true) {
+      this.disableAdoptionButton();
+    }
   };
 
   handleOnClickDog = () => {
@@ -62,6 +65,14 @@ export default class AdoptionPage extends Component {
     ApiService.deletePets("dog").then(dog => {
       this.context.updateSuccessStories(dog);
     });
+    if (this.state.adoptedCat === true) {
+      this.disableAdoptionButton();
+    }
+  };
+
+  disableAdoptionButton = () => {
+    window.localStorage.setItem("canAdopt", "false");
+    this.context.updateUser(null);
   };
 
   renderUpNextCatsList = () => {
