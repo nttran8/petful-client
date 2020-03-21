@@ -44,7 +44,26 @@
   flex-direction: row;
 }
 
+.tab button{
+  background-color: black;
+  color: white;
+}
 
+.tabContent {
+  max-width: 500px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tabContent button {
+  background-color: black;
+  color: white;
+  width: 100px;
+}
+
+.tabContent button:hover {
+  background-color: pink;
+}
 
 .upNext-list{
   align-items: flex-start;
@@ -53,4 +72,22 @@
 .up-next h2{
   margin-top: 15px;
   text-decoration: underline;
+}
+
+@media screen and (max-width: 375px) {
+  .AdoptionPage {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tab button{
+    width: 100px;
+  }
+
+  .up-next{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
 }
