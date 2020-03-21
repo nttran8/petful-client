@@ -27,7 +27,7 @@ export default class AdoptionPage extends Component {
       tabLinks[i].className = tabLinks[i].className.replace("active", "");
     }
 
-    document.getElementById(tabName).style.display = "block";
+    document.getElementById(tabName).style.display = "flex";
     e.currentTarget.className += "active";
   }
 
