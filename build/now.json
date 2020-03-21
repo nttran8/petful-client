@@ -1,7 +1,6 @@
 {
   "version": 2,
   "name": "petful-taylorp-nghit",
-  "alias": "petful-taylorp-nghit",
   "routes": [
     {
       "src": "^/static/(.*)",

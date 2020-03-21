@@ -11,7 +11,8 @@ export default class AdoptionPage extends Component {
     cats: null,
     dogs: null,
     loaded: false,
-    adopted: null
+    adoptedCat: false,
+    adoptedDog: false
   };
 
   openTab(e) {
@@ -44,26 +45,54 @@ export default class AdoptionPage extends Component {
   }
 
   handleOnClickCat = () => {
-    this.setState({ adopted: this.state.cat[0]});
-    ApiService.deletePets("cat");
-    this.value.history.push("/successstories");
+    alert(
+      `Congratulations, you've adopted our beloved ${this.state.cats[0].name}! Please see the success stories tab to for ${this.state.cats[0].name}'s feature.`
+    );
+    this.setState({ adoptedCat: true });
+    ApiService.deletePets("cat").then(cat => {
+      this.context.updateSuccessStories(cat);
+    });
   };
 
   handleOnClickDog = () => {
-    this.setState({ adopted: this.state.dog[0]});
-    ApiService.deletePets("dog");
-    this.props.history.push("/successstories");
+    alert(
+      `Congratulations, you've adopted our beloved ${this.state.dogs[0].name}! Please see the success stories tab to for ${this.state.dogs[0].name}'s feature.`
+    );
+    this.setState({ adoptedDog: true });
+    ApiService.deletePets("dog").then(dog => {
+      this.context.updateSuccessStories(dog);
+    });
   };
 
   renderUpNextCatsList = () => {
-    const {cats =[]} = this.state
-    return cats.map(cat => <li>{cat.name}</li>)
-  }
+    const { cats = [] } = this.state;
+    return cats.map(cat => <li>{cat.name}</li>);
+  };
 
   renderUpNextDogsList = () => {
-    const {dogs=[]} = this.state
-    return dogs.map(dog => <li>{dog.name}</li>)
-  }
+    const { dogs = [] } = this.state;
+    return dogs.map(dog => <li>{dog.name}</li>);
+  };
+
+  renderAdoptCatButton = () => {
+    if (this.context.canAdopt && !this.state.adoptedCat) {
+      return (
+        <button type="button" onClick={this.handleOnClickCat}>
+          Adopt Me!
+        </button>
+      );
+    }
+  };
+
+  renderAdoptDogButton = () => {
+    if (this.context.canAdopt && !this.state.adoptedDog) {
+      return (
+        <button type="button" onClick={this.handleOnClickDog}>
+          Adopt Me!
+        </button>
+      );
+    }
+  };
 
   render() {
     let loaded = this.state.loaded;
@@ -71,54 +100,46 @@ export default class AdoptionPage extends Component {
       <>
         <Header />
         <section className="AdoptionPage">
-        <section className='up-next'>
-          <div className='cats-next'>
-            <h2>Cats:</h2>
-            <ol className='upNext-list'>
-              {loaded && this.renderUpNextCatsList()}
-            </ol >
-          </div>
-          <div className='dogs-next'>
-            <h2>Dogs:</h2>
-            <ol className='upNext-list'>
-              {loaded && this.renderUpNextDogsList()}
-            </ol>
-          </div>
-        </section>
-        <section className='available-pet'>
-          <div className="tab">
-            <button
-              className="tabLinks"
-              id="defaultOpen"
-              value="Cat"
-              onClick={this.openTab}
-            >
-              Cat
-            </button>
-            <button className="tabLinks" value="Dog" onClick={this.openTab}>
-              Dog
-            </button>
-          </div>
-          <div id="Cat" className="tabContent">
-            {loaded && <ViewPet pet={this.state.cats[0]} />}{" "}
-            {/**need to insert props from state */}
-            {/* if user is next, then button is shown */}
-            {this.context.canAdopt && (
-              <button type="button" onClick={this.handleOnClickCat}>
-                Adopt Me!
+          <section className="up-next">
+            <div className="cats-next">
+              <h2>Cats:</h2>
+              <ol className="upNext-list">
+                {loaded && this.renderUpNextCatsList()}
+              </ol>
+            </div>
+            <div className="dogs-next">
+              <h2>Dogs:</h2>
+              <ol className="upNext-list">
+                {loaded && this.renderUpNextDogsList()}
+              </ol>
+            </div>
+          </section>
+          <section className="available-pet">
+            <div className="tab">
+              <button
+                className="tabLinks"
+                id="defaultOpen"
+                value="Cat"
+                onClick={this.openTab}
+              >
+                Cat
               </button>
-            )}
-          </div>
-          <div id="Dog" className="tabContent">
-            {loaded && <ViewPet pet={this.state.dogs[0]} />}{" "}
-            {/**need to insert props from state */}
-            {/* if user is next, then button is shown */}
-            {this.context.canAdopt && (
-              <button type="button" onClick={this.handleOnClickDog}>
-                Adopt Me!
+              <button className="tabLinks" value="Dog" onClick={this.openTab}>
+                Dog
               </button>
-            )}
-          </div>
+            </div>
+            <div id="Cat" className="tabContent">
+              {loaded && <ViewPet pet={this.state.cats[0]} />}{" "}
+              {/**need to insert props from state */}
+              {/* if user is next, then button is shown */}
+              {this.renderAdoptCatButton()}
+            </div>
+            <div id="Dog" className="tabContent">
+              {loaded && <ViewPet pet={this.state.dogs[0]} />}{" "}
+              {/**need to insert props from state */}
+              {/* if user is next, then button is shown */}
+              {this.renderAdoptDogButton()}
+            </div>
           </section>
         </section>
       </>

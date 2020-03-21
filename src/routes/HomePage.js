@@ -11,9 +11,8 @@ export default class HomePage extends Component {
     let name = prompt("What is your name?");
     if (name) {
       this.context.updateUser(name);
-      ApiService.postUsers({ name });
+      ApiService.postUsers({ name }).then(() => this.props.addToQueue());
     }
-    this.props.addToQueue();
   };
 
   render() {

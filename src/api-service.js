@@ -3,10 +3,7 @@ import config from "./config";
 const ApiService = {
   // Get users
   getUsers() {
-    console.log(config.REACT_APP_API_BASE);
-    return fetch(`${config.REACT_APP_API_BASE}/people`).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
-    );
+    return fetch(`${config.REACT_APP_API_BASE}/people`).then(res => res.json());
   },
   // Add users to queue - user object should only contain "name" property
   postUsers(user) {
@@ -39,9 +36,7 @@ const ApiService = {
         "content-type": "application/json"
       },
       body: JSON.stringify({ type })
-    }).then(res => {
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json();
-    });
+    }).then(res => res.json());
   }
 };
 

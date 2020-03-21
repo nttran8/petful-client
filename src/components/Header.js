@@ -5,14 +5,14 @@ export default function Header() {
   return (
     <div className="Header">
       <header>
-        <p>Petful</p>
+        <p>
+          <Link className="nav title" to="/">
+            Petful
+          </Link>
+        </p>
       </header>
       <ol className="navbar">
-        <li>
-          <Link className="nav" to="/">
-            Home
-          </Link>
-        </li>
+        <li></li>
 
         <li>
           <Link className="nav" to="/adoption">
