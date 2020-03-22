@@ -15,11 +15,6 @@
   justify-content: space-evenly;
 }
 
-/* .tab button {
-  background-color: black;
-  color: white;
-} */
-
 .tabContent {
   max-width: 500px;
   flex-direction: column;
@@ -27,12 +22,11 @@
 }
 
 .tabContent button {
-  /* background-color: black;
-  color: white; */
+  border: 3px solid rgb(71, 71, 71);
   width: 100px;
 }
 
-.tabContent button:hover {
+.tabContent button:active {
   background-color: pink;
 }
 

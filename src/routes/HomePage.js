@@ -20,7 +20,7 @@ export default class HomePage extends Component {
     if (name) {
       this.context.updateUser(name);
       // Remove 1 user before adding a user to maintain a set number of users in queue
-      ApiService.deleteUsers(() =>
+      ApiService.deleteUsers().then(() =>
         ApiService.postUsers({ name }).then(() => this.props.addToQueue())
       );
     }
