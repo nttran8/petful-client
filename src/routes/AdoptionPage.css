@@ -2,16 +2,23 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  padding-bottom: 7vh;
 }
 
 .available-pet {
   padding-top: 0;
 }
 
-.tab button {
+.tab {
+  width: 250px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* .tab button {
   background-color: black;
   color: white;
-}
+} */
 
 .tabContent {
   max-width: 500px;
@@ -20,8 +27,8 @@
 }
 
 .tabContent button {
-  background-color: black;
-  color: white;
+  /* background-color: black;
+  color: white; */
   width: 100px;
 }
 

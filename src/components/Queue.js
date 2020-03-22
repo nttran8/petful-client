@@ -62,7 +62,7 @@ export default class Queue extends Component {
       lastNames[Math.floor(Math.random() * lastNames.length)];
 
     // Dequeue and enqueue user
-    ApiService.deleteUsers(this.state.users[0]).then(res => {
+    ApiService.deleteUsers().then(res => {
       this.setState({ users: [...this.state.users.slice(1), name] });
     });
     ApiService.postUsers({ name });
@@ -127,7 +127,15 @@ export default class Queue extends Component {
         <h1>{this.state.message}</h1>
         <ul className="queue-list">
           {this.state.users &&
-            this.state.users.map((user, i) => <li key={i + user}>{user}</li>)}
+            this.state.users.map((user, i) => {
+              if (this.context.user === user) {
+                return (
+                  <li key={i + user} id="showCurrentUser">
+                    {user}
+                  </li>
+                );
+              } else return <li key={i + user}>{user}</li>;
+            })}
         </ul>
       </>
     );

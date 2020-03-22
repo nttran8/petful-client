@@ -11,6 +11,12 @@
   border-radius: 40px;
 }
 
+#showCurrentUser {
+  background-color: lightpink;
+  color: rgb(56, 56, 56);
+  font-weight: 500;
+}
+
 @media screen and (max-width: 475px) {
   .QueuePage h1 {
     font-size: 18px;

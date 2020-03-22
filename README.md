@@ -26,4 +26,6 @@ https://petful-server-nhgi-taylorp.herokuapp.com/api
 ### Screens
 
 <img src="/screen/homepage.png">
+<img src="/screen/queue.png">
 <img src="/screen/adopt.png">
+<img src="/screen/successfulAdoption.png">

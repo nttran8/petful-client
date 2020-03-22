@@ -15,11 +15,10 @@ const ApiService = {
       body: JSON.stringify(user)
     });
   },
-  //Delete users - user object should only contain name property of string type
-  deleteUsers(user) {
+  //Delete users
+  deleteUsers() {
     return fetch(`${config.REACT_APP_API_BASE}/people`, {
-      method: "DELETE",
-      body: JSON.stringify(user)
+      method: "DELETE"
     });
   },
   // Get pets

@@ -19,7 +19,10 @@ export default class HomePage extends Component {
     // Redirect user to queueu after name is added
     if (name) {
       this.context.updateUser(name);
-      ApiService.postUsers({ name }).then(() => this.props.addToQueue());
+      // Remove 1 user before adding a user to maintain a set number of users in queue
+      ApiService.deleteUsers(() =>
+        ApiService.postUsers({ name }).then(() => this.props.addToQueue())
+      );
     }
   };
 
