@@ -115,11 +115,19 @@ button:hover {
 }
 
 @media screen and (max-width: 475px) {
+  .HomePage > h1 {
+    font-size: 25px;
+  }
+
   .pet_story {
     width: 310px;
   }
 
   .pet-pic_story {
     width: 270px;
+  }
+
+  button {
+    width: 30vw;
   }
 }

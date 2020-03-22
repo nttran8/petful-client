@@ -22,8 +22,7 @@
 }
 
 .tabContent button {
-  border: 3px solid rgb(71, 71, 71);
-  width: 100px;
+  width: 130px;
 }
 
 .tabContent button:active {
