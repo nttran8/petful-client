@@ -9,12 +9,13 @@ export default class HomePage extends Component {
 
   addUser = () => {
     let name;
+    // Allow user to add name to queue only if user have not adopted before
     if (window.localStorage.getItem("canAdopt") === null) {
       name = prompt("What is your name?");
     }
+    // Redirect user to queueu after name is added
     if (name) {
       this.context.updateUser(name);
-      console.log(this.context.user);
       ApiService.postUsers({ name }).then(() => this.props.addToQueue());
     }
   };
@@ -27,8 +28,9 @@ export default class HomePage extends Component {
           A place to find your next doggo and catto besfriends! Each adoptor can
           bring one doggo, one catto, or one of each home. To help our doggo and
           catto quickly find a home, we made it a rule for the adoptor to only
-          claim the next available doggo and catto. Click "Adopt Now" to be
-          entered in our waiting queue!
+          claim the next available doggo and catto. The adoption process only
+          takes 5 seconds per user. Click "Adopt Now" to be entered in our
+          waiting queue!
         </p>
         <img src={welcomeCat} alt="welcome cat" />
         <button type="button" onClick={this.addUser}>

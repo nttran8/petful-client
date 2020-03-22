@@ -3,8 +3,8 @@ import React, { Component } from "react";
 const UserContext = React.createContext({
   user: null,
   successStories: [],
-  updateSuccessStories: () => {},
-  updateUser: () => {}
+  updateUser: () => {},
+  updateSuccessStories: () => {}
 });
 
 export default UserContext;
@@ -47,8 +47,8 @@ export class UserProvider extends Component {
     const value = {
       user: this.state.user,
       successStories: this.state.successStories,
-      updateSuccessStories: this.updateSuccessStories,
-      updateUser: this.updateUser
+      updateUser: this.updateUser,
+      updateSuccessStories: this.updateSuccessStories
     };
 
     return (

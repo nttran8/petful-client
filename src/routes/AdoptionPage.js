@@ -16,35 +16,32 @@ export default class AdoptionPage extends Component {
   };
 
   openTab(e) {
+    // Show the next available pet for adoption
     let tabName = e.currentTarget.value;
     let i, tabContent, tabLinks;
     tabContent = document.getElementsByClassName("tabContent");
     for (i = 0; i < tabContent.length; i++) {
       tabContent[i].style.display = "none";
     }
-
     tabLinks = document.getElementsByClassName("tabLinks");
     for (i = 0; i < tabLinks.length; i++) {
       tabLinks[i].className = tabLinks[i].className.replace("active", "");
     }
-
     document.getElementById(tabName).style.display = "flex";
     e.currentTarget.className += "active";
   }
 
   componentDidMount() {
-    //console.log(document.getElementsByClassName('tabLinks')[0])
+    // Open the cat tab on page load
     document.getElementsByClassName("tabLinks")[0].click();
-    ApiService.getPets()
-      // .then(res => {
-      //   this.setState({ cat: res.})
-      // })
-      .then(res => {
-        this.setState({ cats: res.cat, dogs: res.dog, loaded: true });
-      });
+    // Fetch all pets for adoption from database
+    ApiService.getPets().then(res => {
+      this.setState({ cats: res.cat, dogs: res.dog, loaded: true });
+    });
   }
 
   handleOnClickCat = () => {
+    // Dequeue pet from adoption pool
     alert(
       `Congratulations, you've adopted our beloved ${this.state.cats[0].name}! Please see the success stories tab to for ${this.state.cats[0].name}'s feature.`
     );
@@ -52,12 +49,14 @@ export default class AdoptionPage extends Component {
     ApiService.deletePets("cat").then(cat => {
       this.context.updateSuccessStories(cat);
     });
+    // Disable user from adopting anymore if user has adopted 1 cat and 1 dog
     if (this.state.adoptedDog === true) {
       this.disableAdoptionButton();
     }
   };
 
   handleOnClickDog = () => {
+    // Dequeue pet from adoption pool
     alert(
       `Congratulations, you've adopted our beloved ${this.state.dogs[0].name}! Please see the success stories tab to for ${this.state.dogs[0].name}'s feature.`
     );
@@ -65,6 +64,7 @@ export default class AdoptionPage extends Component {
     ApiService.deletePets("dog").then(dog => {
       this.context.updateSuccessStories(dog);
     });
+    // Disable user from adopting anymore if user has adopted 1 cat and 1 dog
     if (this.state.adoptedCat === true) {
       this.disableAdoptionButton();
     }
@@ -91,7 +91,11 @@ export default class AdoptionPage extends Component {
       !this.state.adoptedCat
     ) {
       return (
-        <button type="button" onClick={this.handleOnClickCat}>
+        <button
+          disabled={this.state.adoptedCat}
+          type="button"
+          onClick={this.handleOnClickCat}
+        >
           Adopt Me!
         </button>
       );
@@ -104,7 +108,11 @@ export default class AdoptionPage extends Component {
       !this.state.adoptedDog
     ) {
       return (
-        <button type="button" onClick={this.handleOnClickDog}>
+        <button
+          disabled={this.state.adoptedDog}
+          type="button"
+          onClick={this.handleOnClickDog}
+        >
           Adopt Me!
         </button>
       );
@@ -147,8 +155,6 @@ export default class AdoptionPage extends Component {
             </div>
             <div id="Cat" className="tabContent">
               {loaded && <ViewPet pet={this.state.cats[0]} />}{" "}
-              {/**need to insert props from state */}
-              {/* if user is next, then button is shown */}
               {window.localStorage.getItem("canAdopt") === "true" && (
                 <button type="button" onClick={this.handleOnClickCat}>
                   Adopt Me!
@@ -157,8 +163,6 @@ export default class AdoptionPage extends Component {
             </div>
             <div id="Dog" className="tabContent">
               {loaded && <ViewPet pet={this.state.dogs[0]} />}{" "}
-              {/**need to insert props from state */}
-              {/* if user is next, then button is shown */}
               {window.localStorage.getItem("canAdopt") === "true" && (
                 <button type="button" onClick={this.handleOnClickDog}>
                   Adopt Me!

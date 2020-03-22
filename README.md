@@ -1,6 +1,6 @@
 # Petful Client
 
-A pet adoption interface where users can adopt cats and dogs. Users have to enter a waiting queue in order to wait for their turn to adopt. Pets are also adopted based on the FIFO (first in first out) method where the first rescued pets are the next to get adopted.
+A FIFO pet adoption interface where users can adopt one cat, one dog, or one of each. Users have to enter a waiting queue in order to wait for their turn to adopt. Our similation dequeue and enqueue a sample user and pet every 5 seconds. Users can only enter the queue once. Pets are also adopted based on the FIFO (first in first out) method where the first rescued pets are the next to get adopted.
 
 ## Live Link
 

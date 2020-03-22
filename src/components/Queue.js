@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import ApiService from "../api-service";
 import UserContext from "../context";
 
+import "./Queue.css";
+
 let _5_SEC = 5000;
 let _timeoutId = null;
 
@@ -78,6 +80,7 @@ export default class Queue extends Component {
   };
 
   checkAdoptionStatus = () => {
+    // Check if user is ready to adopt
     if (
       window.localStorage.getItem("canAdopt") === "false" &&
       this.context.user !== null

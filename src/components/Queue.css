@@ -1,3 +1,8 @@
+.QueuePage h2 {
+  font-size: 18px;
+  margin: 20px auto;
+}
+
 .queue-list li {
   padding: 5px 50px;
   margin: 5px 0;
