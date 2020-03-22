@@ -6,7 +6,7 @@ export default function NotFoundPage() {
     <>
       <Header />
       <section className="NotFoundPage">
-        <h2>Oops, this page doesn't exist.</h2>
+        <h1>Oops, this page doesn't exist.</h1>
         <p>Please select any pages from the navigation.</p>
       </section>
     </>

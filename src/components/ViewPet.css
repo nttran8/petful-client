@@ -11,8 +11,8 @@
   margin-bottom: 10px;
 }
 
-img {
-  width: 300px;
+.pet-pic {
+  width: 500px;
 }
 
 .info {
@@ -37,4 +37,14 @@ img {
   align-items: center;
   width: 600px;
   margin: 30px;
+}
+
+@media screen and (max-width: 475px) {
+  .tabContent button {
+    margin-top: 0;
+  }
+
+  .pet-pic {
+    width: 300px;
+  }
 }

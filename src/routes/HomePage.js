@@ -12,6 +12,9 @@ export default class HomePage extends Component {
     // Allow user to add name to queue only if user have not adopted before
     if (window.localStorage.getItem("canAdopt") === null) {
       name = prompt("What is your name?");
+    } else {
+      alert("Each person can only adopt once.");
+      this.props.addToQueue();
     }
     // Redirect user to queueu after name is added
     if (name) {

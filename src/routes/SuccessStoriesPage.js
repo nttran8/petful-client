@@ -7,7 +7,7 @@ export default function SuccessStoriesPage() {
     <>
       <Header />
       <section className="SuccessStoriesPage">
-        <h2>Congratulations for finding a home!</h2>
+        <h1>Congratulations for finding a home!</h1>
         <RecentAdoption />
       </section>
     </>

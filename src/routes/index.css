@@ -80,7 +80,7 @@ section {
   font-weight: 200;
 }
 
-h1 {
+.HomePage > h1 {
   font-size: 70px;
 }
 
@@ -98,7 +98,7 @@ button:hover {
 .pet_story {
   margin-top: 20px;
   background-color: lightpink;
-  width: 60vw;
+  width: 550px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -107,8 +107,19 @@ button:hover {
 .pet-pic_story {
   margin-top: 10px;
   margin-bottom: 10px;
+  width: 500px;
 }
 
 .title {
   color: white;
+}
+
+@media screen and (max-width: 475px) {
+  .pet_story {
+    width: 310px;
+  }
+
+  .pet-pic_story {
+    width: 270px;
+  }
 }

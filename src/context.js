@@ -2,8 +2,11 @@ import React, { Component } from "react";
 
 const UserContext = React.createContext({
   user: null,
+  adoptedCat: false,
+  adoptedDog: false,
   successStories: [],
   updateUser: () => {},
+  updateAdoption: () => {},
   updateSuccessStories: () => {}
 });
 
@@ -12,6 +15,8 @@ export default UserContext;
 export class UserProvider extends Component {
   state = {
     user: null,
+    adoptedCat: false,
+    adoptedDog: false,
     successStories: [
       {
         imageURL:
@@ -35,6 +40,14 @@ export class UserProvider extends Component {
     this.setState({ user });
   };
 
+  updateAdoption = petType => {
+    if (petType === "cat") {
+      this.setState({ adoptedCat: true });
+    } else {
+      this.setState({ adoptedDog: true });
+    }
+  };
+
   updateSuccessStories = animal => {
     const pet = {
       imageURL: animal.imageURL,
@@ -46,8 +59,11 @@ export class UserProvider extends Component {
   render() {
     const value = {
       user: this.state.user,
+      adoptedCat: this.state.adoptedCat,
+      adoptedDog: this.state.adoptedDog,
       successStories: this.state.successStories,
       updateUser: this.updateUser,
+      updateAdoption: this.updateAdoption,
       updateSuccessStories: this.updateSuccessStories
     };
 

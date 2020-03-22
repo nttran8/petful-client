@@ -124,7 +124,7 @@ export default class Queue extends Component {
   render() {
     return (
       <>
-        <h2>{this.state.message}</h2>
+        <h1>{this.state.message}</h1>
         <ul className="queue-list">
           {this.state.users &&
             this.state.users.map((user, i) => <li key={i + user}>{user}</li>)}

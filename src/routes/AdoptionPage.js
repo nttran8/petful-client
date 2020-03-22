@@ -10,9 +10,7 @@ export default class AdoptionPage extends Component {
   state = {
     cats: null,
     dogs: null,
-    loaded: false,
-    adoptedCat: false,
-    adoptedDog: false
+    loaded: false
   };
 
   openTab(e) {
@@ -45,12 +43,12 @@ export default class AdoptionPage extends Component {
     alert(
       `Congratulations, you've adopted our beloved ${this.state.cats[0].name}! Please see the success stories tab to for ${this.state.cats[0].name}'s feature.`
     );
-    this.setState({ adoptedCat: true });
     ApiService.deletePets("cat").then(cat => {
       this.context.updateSuccessStories(cat);
+      this.context.updateAdoption("cat");
     });
     // Disable user from adopting anymore if user has adopted 1 cat and 1 dog
-    if (this.state.adoptedDog === true) {
+    if (this.context.adoptedDog === true) {
       this.disableAdoptionButton();
     }
   };
@@ -60,12 +58,12 @@ export default class AdoptionPage extends Component {
     alert(
       `Congratulations, you've adopted our beloved ${this.state.dogs[0].name}! Please see the success stories tab to for ${this.state.dogs[0].name}'s feature.`
     );
-    this.setState({ adoptedDog: true });
     ApiService.deletePets("dog").then(dog => {
       this.context.updateSuccessStories(dog);
+      this.context.updateAdoption("dog");
     });
     // Disable user from adopting anymore if user has adopted 1 cat and 1 dog
-    if (this.state.adoptedCat === true) {
+    if (this.context.adoptedCat === true) {
       this.disableAdoptionButton();
     }
   };
@@ -88,14 +86,10 @@ export default class AdoptionPage extends Component {
   renderAdoptCatButton = () => {
     if (
       window.localStorage.getItem("canAdopt") === "true" &&
-      !this.state.adoptedCat
+      !this.context.adoptedCat
     ) {
       return (
-        <button
-          disabled={this.state.adoptedCat}
-          type="button"
-          onClick={this.handleOnClickCat}
-        >
+        <button type="button" onClick={this.handleOnClickCat}>
           Adopt Me!
         </button>
       );
@@ -105,14 +99,10 @@ export default class AdoptionPage extends Component {
   renderAdoptDogButton = () => {
     if (
       window.localStorage.getItem("canAdopt") === "true" &&
-      !this.state.adoptedDog
+      !this.context.adoptedDog
     ) {
       return (
-        <button
-          disabled={this.state.adoptedDog}
-          type="button"
-          onClick={this.handleOnClickDog}
-        >
+        <button type="button" onClick={this.handleOnClickDog}>
           Adopt Me!
         </button>
       );
@@ -127,13 +117,13 @@ export default class AdoptionPage extends Component {
         <section className="AdoptionPage">
           <div className="up-next">
             <div className="cats-next">
-              <h2>Cats:</h2>
+              <h1>Cats:</h1>
               <ol className="upNext-list">
                 {loaded && this.renderUpNextCatsList()}
               </ol>
             </div>
             <div className="dogs-next">
-              <h2>Dogs:</h2>
+              <h1>Dogs:</h1>
               <ol className="upNext-list">
                 {loaded && this.renderUpNextDogsList()}
               </ol>
@@ -155,19 +145,11 @@ export default class AdoptionPage extends Component {
             </div>
             <div id="Cat" className="tabContent">
               {loaded && <ViewPet pet={this.state.cats[0]} />}{" "}
-              {window.localStorage.getItem("canAdopt") === "true" && (
-                <button type="button" onClick={this.handleOnClickCat}>
-                  Adopt Me!
-                </button>
-              )}
+              {this.renderAdoptCatButton()}
             </div>
             <div id="Dog" className="tabContent">
               {loaded && <ViewPet pet={this.state.dogs[0]} />}{" "}
-              {window.localStorage.getItem("canAdopt") === "true" && (
-                <button type="button" onClick={this.handleOnClickDog}>
-                  Adopt Me!
-                </button>
-              )}
+              {this.renderAdoptDogButton()}
             </div>
           </section>
         </section>

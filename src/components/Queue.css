@@ -1,6 +1,7 @@
-.QueuePage h2 {
-  font-size: 18px;
+.QueuePage h1 {
+  font-size: 25px;
   margin: 20px auto;
+  text-align: center;
 }
 
 .queue-list li {
@@ -8,4 +9,10 @@
   margin: 5px 0;
   border: 1px solid black;
   border-radius: 40px;
+}
+
+@media screen and (max-width: 475px) {
+  .QueuePage h1 {
+    font-size: 18px;
+  }
 }
